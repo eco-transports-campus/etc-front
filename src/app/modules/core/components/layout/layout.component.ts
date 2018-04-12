@@ -11,7 +11,7 @@ export class LayoutComponent implements OnDestroy {
     mobileQuery: MediaQueryList;
 
     private _mobileQueryListener: () => void;
-    public menu = environment.menu;
+    public env = environment;
 
     constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
         this.mobileQuery = media.matchMedia('(max-width: 600px)');

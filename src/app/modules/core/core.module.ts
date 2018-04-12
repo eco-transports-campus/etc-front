@@ -5,6 +5,10 @@ import { RouterModule } from '@angular/router';
 
 // Components
 import { LayoutComponent } from './components/layout/layout.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { BugComponent } from './components/bug/bug.component';
 
 // Material
 import {
@@ -15,7 +19,11 @@ import {
 } from '@angular/material';
 
 export const COMPONENTS = [
-    LayoutComponent
+    LayoutComponent,
+    HomeComponent,
+    AboutComponent,
+    NotFoundComponent,
+    BugComponent
 ];
 
 const MATERIAL_MODULES = [
