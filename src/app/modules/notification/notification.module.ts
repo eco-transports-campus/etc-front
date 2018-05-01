@@ -1,3 +1,4 @@
+import { NotificationService } from './services/notification.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -26,6 +27,6 @@ const MATERIAL_MODULES = [
     ],
     declarations: COMPONENTS,
     exports: COMPONENTS,
-    providers: []
+    providers: [NotificationService]
 })
 export class NotificationModule { }
