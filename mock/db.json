@@ -1,0 +1,90 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "contact": {
+        "universityMail": "john.doe@u-psud.fr",
+        "secondaryMail": "xXxjohn_du_91xXx@hotmail.fr",
+        "phone": "+33680956232"
+      },
+      "notifications": [
+        {
+          "id": 1,
+          "preferenceId": 1,
+          "date": 1525186469430,
+          "unread": "true",
+          "title": "Nouvelle recommandation",
+          "content": "Nous avons trouvé une personne avec qui covoiturer pour l'un de vos trajets quotidien."
+        }
+      ],
+      "dailyCarTrips": [{
+        "name": "École",
+        "from": {
+          "latitude": 48.727531,
+          "longitude": 2.253915
+        },
+        "to": {
+          "latitude": 48.709031,
+          "longitude": 2.171216
+        }
+      }],
+      "notificationPreferences": [
+        {
+          "preferenceId": 1,
+          "email": false,
+          "sms": false,
+          "push": false
+        }
+      ]
+    }
+  ],
+  "notification-preferences": [
+    {
+      "id": 1,
+      "name": "Recevoir des notifications pour mes trajets quotidiens."
+    }
+  ],
+  "trip-requests": [
+    {
+      "id": 1,
+      "creator": 1,
+      "from": {
+        "latitude": 48.727531,
+        "longitude": 2.253915
+      },
+      "to": {
+        "latitude": 48.724604 ,
+        "longitude": 2.27756
+      },
+      "after": 1526223600,
+      "before": 1526234400,
+      "comment": "Quelqu'un va au Cora de Massy ? Besoin de faire des courses ;)",
+      "closed": false
+    }
+  ],
+  "trip-propositions": [
+    {
+      "id": 1,
+      "creator": 1,
+      "from": {
+        "latitude": 48.727531,
+          "longitude": 2.253915
+      },
+      "to": {
+        "latitude": 48.5886,
+        "longitude": 2.24583
+      },
+      "radius": 0,
+      "at": 1525447800,
+      "seats": 3,
+      "comment": "Je vais à Arpajon après les cours.",
+      "applications": {
+        "accepted": [],
+        "waiting": [],
+        "declined": []
+      }
+    }
+  ]
+}
