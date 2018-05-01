@@ -7,7 +7,7 @@
         <h1 class="title">ETC</h1>
 
         <span class="spacer"></span>
-        <mat-icon class="icons" routerLink="notifications">notifications</mat-icon>
+        <span class="icons" (click)="notificationNav.toggle()"><mat-icon  >notifications</mat-icon>( {{ unreadNotifications }} )</span>
         <!-- <mat-icon class="icons" routerLink="env.routes.message">mail</mat-icon> -->
     </mat-toolbar>
 
@@ -20,6 +20,21 @@
                     <mat-divider *ngIf="item.withDivider"></mat-divider>
                 </mat-list-item>
             </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav #notificationNav position="end" mode="over">
+          <div class="notification-link">
+              <button  mat-raised-button routerLink="notifications">Show all notifications</button>
+          </div>
+          <mat-divider></mat-divider>
+          <div *ngFor="let notification of notifications">
+            <div class="notification" [class.notification-unread]="notification.unread">
+              <span class="notification-date">{{ notification.date | date:short }}</span>
+              <span class="notification-title">{{ notification.title }}</span>
+              <p class="notification-content">{{ notification.content }}</p>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
         </mat-sidenav>
 
         <mat-sidenav-content>
