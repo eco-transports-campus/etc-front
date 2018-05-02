@@ -1,3 +1,11 @@
 <div class="notifications-list">
-    TODO : Notifications List Page
+    <h1>Notifications</h1>
+    <div *ngFor="let notification of notifications">
+        <div class="notification" [class.notification-unread]="notification.unread">
+          <span class="notification-date">{{ notification.date | date:'short' }}</span>
+          <span class="notification-title">{{ notification.title }}</span>
+          <p class="notification-content">{{ notification.content }}</p>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
 </div>
