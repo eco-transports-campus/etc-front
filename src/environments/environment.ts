@@ -13,5 +13,6 @@ export const environment = {
         { title: 'Statistiques', icon: 'show_chart', link: 'stats', withDivider: true },
         { title: 'Reporter un bug', icon: 'bug_report', link: 'bug', withDivider: false },
         { title: 'About', icon: 'account_circle', link: 'about', withDivider: false }
-    ]
+    ],
+    api: 'http://localhost:3000',
 };
