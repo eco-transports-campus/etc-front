@@ -8,7 +8,7 @@ import { NotificationsListComponent } from './components/list/notifications-list
 
 // Material
 import {
-
+    MatDividerModule
 } from '@angular/material';
 
 export const COMPONENTS = [
@@ -16,7 +16,7 @@ export const COMPONENTS = [
 ];
 
 const MATERIAL_MODULES = [
-
+    MatDividerModule
 ];
 
 @NgModule({
