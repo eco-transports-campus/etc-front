@@ -89,7 +89,7 @@
             0px 4px 5px 0px rgba(0, 0, 0, 0.14), 
             0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 
-        .title {
+        .app-name {
             margin-left: 20px
         }
     }
@@ -97,8 +97,63 @@
     .authentication {
         padding: 30px 20px;
 
-        .input {
-            width: 300px;
+        .topic {
+            margin: 20px 0;
+            max-width: 900px;
+    
+            .title {
+                font-weight: bold;
+                font-size: 1.2em;
+                width: 100%;
+                // border-bottom: solid 1px #01579B;
+                padding-bottom: 5px;
+                margin-bottom: 10px;
+
+                .mat-icon {
+                    display: inline-flex;
+                    vertical-align: middle;
+                    padding-bottom: 3px;
+                }
+            }
+    
+            .content {
+                // text-align: justify;
+
+                .input,
+                .select {
+                    width: 300px;
+                }
+                
+                &.travels-form {
+                    button {
+                        margin-right: 10px;
+
+                        .mat-icon {
+                            padding-bottom: 2px;
+                        }
+                    }
+                    .input {
+                        width: 275px;
+                    }
+                }
+            } 
+        }
+    }
+
+    // If mobile size
+    &.isMobile {
+        .mat-toolbar {
+            position: fixed;
+        }
+
+        .authentication {
+            padding: 10px 20px;
+
+            .topic {
+                &:first-child {
+                    margin-top: 5px;
+                }
+            }
         }
     }
 }
