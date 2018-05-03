@@ -15,4 +15,7 @@ export const environment = {
         { title: 'About', icon: 'account_circle', link: 'about', withDivider: false }
     ],
     api: 'http://localhost:3000',
+    vehicles: ['Vélo', 'Voiture', 'Camion', 'Moto'],
+    transports: ['Train', 'RER', 'Bus', 'A pieds', 'Tram', 'Métro'],
+    notifications: ['Demandes quotidiennes sur vos trajets', 'Trajets trouvés', 'Informations']
 };

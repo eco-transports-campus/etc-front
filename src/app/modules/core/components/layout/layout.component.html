@@ -1,4 +1,4 @@
-<div class="layout" [class.isMobile]="mobileQuery.matches">
+<div class="layout" [class.isMobile]="mobileQuery.matches" *ngIf="isLoggedIn">
     <mat-toolbar>
         <button aria-label="Open application menu" mat-icon-button (click)="snav.toggle()" *ngIf="mobileQuery.matches">
             <mat-icon>menu</mat-icon>
@@ -26,4 +26,73 @@
             <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
+</div>
+
+<div class="layout-auth" *ngIf="!isLoggedIn">
+    <mat-toolbar>
+        <h1 class="title">ETC</h1>
+    </mat-toolbar>
+
+    <div class="authentication">
+        <div class="title">Informations personnelles</div>
+        <mat-form-field class="input">
+            <input matInput type="text" placeholder="Prénom" [(ngModel)]="_firstName" disabled/>
+        </mat-form-field>
+        <mat-form-field class="input">
+            <input matInput type="text" placeholder="Nom" [(ngModel)]="_lastName" disabled/>
+        </mat-form-field>
+        <mat-form-field class="input">
+            <input matInput type="text" placeholder="Mail U-Psud" [(ngModel)]="_universityMail" disabled/>
+        </mat-form-field>
+        <mat-form-field class="input">
+            <input matInput type="text" placeholder="Mail perso" [(ngModel)]="_mail" />
+            <button mat-button *ngIf="_mail" matSuffix mat-icon-button aria-label="Clear" (click)="_mail = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-form-field class="input">
+            <span matPrefix>+33&nbsp;</span>
+            <input matInput type="text" placeholder="Numéro" [(ngModel)]="_phoneNumber" />
+            <button mat-button *ngIf="_phoneNumber" matSuffix mat-icon-button aria-label="Clear" (click)="_phoneNumber = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <div class="title">Moyens de transport disponnibles</div>
+        <mat-form-field>
+            <mat-select placeholder="Véhicules" [(value)]="_vehicles" multiple>
+                <mat-option *ngFor="let vehicle of env.vehicles" [value]="vehicle">{{vehicle}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Transports" [(value)]="_transports" multiple>
+                <mat-option *ngFor="let transport of env.transports" [value]="transport">{{transport}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="title">Trajets</div>
+        <button mat-mini-fab (click)="addTravel()" [disabled]="tmpStart === '' || tmpEnd === ''">
+            <mat-icon aria-label="Add travel button">add</mat-icon>
+        </button>
+        <mat-form-field class="input">
+            <input matInput type="text" placeholder="Départ" [(ngModel)]="tmpStart" />
+        </mat-form-field>
+        <mat-form-field class="input">
+            <input matInput type="text" placeholder="Arrivée" [(ngModel)]="tmpEnd" />
+        </mat-form-field>
+        <div class="travels">
+            <div class="travel" *ngFor="let travel of _travels">
+                <mat-icon (click)="removeTravel(travel.id)">delete</mat-icon>
+                [{{travel.id}}] {{travel.start}} -> {{travel.end}}
+            </div>
+        </div>
+
+        <div class="title">Notifications</div>
+        <div class="notification" *ngFor="let notif of env.notifications">
+            <mat-checkbox (click)="toggleNotif(notif)">{{notif}}</mat-checkbox>
+        </div>
+
+        <button mat-button color="primary" (click)="signIn()">Validez</button>
+
+    </div>
 </div>
