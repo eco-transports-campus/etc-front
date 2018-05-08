@@ -24,6 +24,7 @@ export class LayoutComponent implements OnDestroy, OnInit {
 
     private _mobileQueryListener: () => void;
     public env = environment;
+    // init to true if you don't want to test first authentication form
     public isLoggedIn = false;
 
     public _firstName: string;
