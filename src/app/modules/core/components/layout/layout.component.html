@@ -103,8 +103,16 @@
 
         <div class="travels">
           <div class="travel" *ngFor="let travel of _travels">
-            <mat-icon (click)="removeTravel(travel.id)">delete</mat-icon>
-            [{{travel.id}}] {{travel.start}} -> {{travel.end}}
+            <mat-icon (click)="removeTravel(travel.id)">cancel</mat-icon>
+            <div class="t-render">
+              <div>
+                {{travel.start}}
+              </div>
+              <mat-divider></mat-divider>
+              <div>
+                {{travel.end}}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -118,13 +126,16 @@
       </div>
       <div class="content">
         <div *ngFor="let notif of env.notifications">
-          <mat-checkbox (click)="toggleNotif(notif)">{{notif}}</mat-checkbox>
+          <mat-checkbox checked="true" (click)="toggleNotif(notif)">{{notif}}</mat-checkbox>
         </div>
       </div>
     </div>
 
 
-    <button mat-button color="primary" (click)="signIn()">Validez</button>
+    <button mat-raised-button color="primary" (click)="signIn()" [disabled]="hasMissingInformation()">Valider</button>
 
+    <div class="error" *ngIf="hasMissingInformation()">
+      Informations manquantes
+    </div>
   </div>
 </div>

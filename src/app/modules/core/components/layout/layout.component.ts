@@ -3,7 +3,6 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
 import { DailyCarTrips } from '../../../user/model/daily-car-trips';
 import { User } from '../../../user/model/user';
-import { FormControl } from '@angular/forms';
 
 const mockUserFromCAS = {
     firstName: 'Clément',
@@ -51,7 +50,9 @@ export class LayoutComponent implements OnDestroy, OnInit {
         this._mail = '';
         this._phoneNumber = '';
         this._travels = [];
-        this._selectedNotifs = [];
+        this._vehicles = [];
+        this._transports = [];
+        this._selectedNotifs = ['Demandes quotidiennes sur vos trajets', 'Trajets trouvés', 'Informations'];
         this.tmpStart = '';
         this.tmpEnd = '';
     }
@@ -61,7 +62,6 @@ export class LayoutComponent implements OnDestroy, OnInit {
     }
 
     addTravel() {
-        console.log('addTravel');
         const travel = <Travel>{};
 
         travel.start = this.tmpStart;
@@ -102,6 +102,11 @@ export class LayoutComponent implements OnDestroy, OnInit {
         };
 
         console.log('sign in with : ', tmpUser);
+        this.isLoggedIn = true;
+    }
+
+    hasMissingInformation() {
+        return this._travels.length === 0 || (this._transports.length + this._vehicles.length === 0);
     }
 }
 

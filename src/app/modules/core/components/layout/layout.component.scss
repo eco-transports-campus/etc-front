@@ -127,16 +127,44 @@
                 &.travels-form {
                     button {
                         margin-right: 10px;
+                        display: block;
 
                         .mat-icon {
                             padding-bottom: 2px;
                         }
                     }
-                    .input {
-                        width: 275px;
+
+                    .travels {
+                        .travel {
+                            display: flex;
+                            margin: 5px 0;
+
+                            .t-render {
+                                flex: 1;
+
+                                .mat-divider {
+                                    max-width: 560px;
+                                }
+                                div {
+                                    padding: 2px 0;
+                                }
+                            }
+
+                            .mat-icon {
+                                width: 40px;
+                                display: inline-flex;
+                                vertical-align: middle;
+                                padding-bottom: 3px;
+                                cursor: pointer;
+                            }
+                        }
                     }
                 }
             } 
+        }
+
+        .error {
+            color: red;
         }
     }
 
@@ -152,6 +180,20 @@
             .topic {
                 &:first-child {
                     margin-top: 5px;
+                }
+
+                .content {
+                    &.travels-form {
+                        .travels {
+                            .travel {
+                                .t-render {
+                                    .mat-divider {
+                                        max-width: 260px;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
