@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { Subject } from 'rxjs/Subject';
-import { map, flatMap, delay } from 'rxjs/operators';
+import { map, flatMap, delay, filter } from 'rxjs/operators';
 
 @Injectable()
 export class NotificationService {
@@ -33,8 +33,12 @@ export class NotificationService {
       );
   }
 
-  public listenNewNotification(): Observable<Notification> {
-    // TODO: Replace with this.notifications$ as observable.
+  public markNotificationsAsReadForUser(userId: number, notificationsId: number[]): void {
+    // TODO : Use a real server-side implementation
+  }
+
+  public listenNewNotificationForUser(userId: number): Observable<Notification> {
+    // TODO: Replace with this.notifications$ as observable + filter.
 
     // Fake notification.
     const notification = <Notification>{

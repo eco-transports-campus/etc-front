@@ -1,11 +1,16 @@
+import { Notification } from './../../../notification/models/notifications';
+import { NotificationService } from './../../../notification/services/notification.service';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, ViewChild, AfterContentInit, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 // Assets
 import { environment } from '../../../../../environments/environment';
 import { DailyCarTrips } from '../../../user/model/daily-car-trips';
 import { User } from '../../../user/model/user';
+
+// Material
+import { MatSidenav } from '@angular/material/sidenav';
 
 const mockUserFromCAS = {
     firstName: 'Clément',
@@ -19,13 +24,18 @@ const mockUserFromCAS = {
     templateUrl: 'layout.component.html',
     styleUrls: ['layout.component.scss'],
 })
-export class LayoutComponent implements OnDestroy, OnInit {
+export class LayoutComponent implements OnDestroy, OnInit, AfterContentInit {
+
+    @ViewChild('notificationNav') notificationNav: MatSidenav;
+
     mobileQuery: MediaQueryList;
+    notifications: Notification[] = [];
+    unreadNotifications = 0;
 
     private _mobileQueryListener: () => void;
     public env = environment;
     // init to true if you don't want to test first authentication form
-    public isLoggedIn = false;
+    public isLoggedIn = true;
 
     public _firstName: string;
     public _lastName: string;
@@ -41,13 +51,60 @@ export class LayoutComponent implements OnDestroy, OnInit {
     public tmpStart: string;
     public tmpEnd: string;
 
-    constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public router: Router) {
+    constructor(
+        private notif: NotificationService,
+        changeDetectorRef: ChangeDetectorRef,
+        media: MediaMatcher,
+        public router: Router) {
+
         this.mobileQuery = media.matchMedia('(max-width: 600px)');
         this._mobileQueryListener = () => changeDetectorRef.detectChanges();
         this.mobileQuery.addListener(this._mobileQueryListener);
+        this.retrievedNotification();
+        this.listenNotification();
     }
 
-    ngOnInit() {
+    openNotification(): void {
+        this.notificationNav.toggle();
+    }
+
+    setNotificationRead(): void {
+        this.notifications.forEach(item => item.unread = false);
+        this.unreadNotifications = 0;
+    }
+
+    retrievedNotification(): void {
+        // TODO: Use real user id
+        this.notif.getNotificationsForUser(1).subscribe(
+            data => {
+                this.notifications = data;
+                this.unreadNotifications = this.notifications.filter(notification => notification.unread).length;
+            }
+        );
+    }
+
+    listenNotification(): void {
+        // TODO: Use real user id
+        this.notif.listenNewNotificationForUser(1).subscribe(
+            data => {
+                this.notifications.push(data);
+                this.unreadNotifications++;
+            }
+        );
+    }
+
+    showAllNotifications(): void {
+        this.notificationNav.toggle();
+        this.router.navigate(['notifications']);
+    }
+
+    ngAfterContentInit(): void {
+        if (this.isLoggedIn) {
+            this.notificationNav.onClose.subscribe(data => this.setNotificationRead());
+        }
+    }
+
+    ngOnInit(): void {
         this._firstName = mockUserFromCAS.firstName;
         this._lastName = mockUserFromCAS.lastName;
         this._universityMail = mockUserFromCAS.universityMail;
@@ -65,7 +122,7 @@ export class LayoutComponent implements OnDestroy, OnInit {
         this.mobileQuery.removeListener(this._mobileQueryListener);
     }
 
-    addTravel() {
+    addTravel(): void {
         const travel = <Travel>{};
 
         travel.start = this.tmpStart;
@@ -79,11 +136,11 @@ export class LayoutComponent implements OnDestroy, OnInit {
         this.tmpEnd = '';
     }
 
-    removeTravel(id: number) {
+    removeTravel(id: number): void {
         this._travels = this._travels.filter(travel => travel.id !== id);
     }
 
-    toggleNotif(notif: string) {
+    toggleNotif(notif: string): void {
         if (this._selectedNotifs.includes(notif)) {
             this._selectedNotifs = this._selectedNotifs.filter(n => n !== notif);
         } else {
@@ -91,7 +148,7 @@ export class LayoutComponent implements OnDestroy, OnInit {
         }
     }
 
-    signIn() {
+    signIn(): void {
         const tmpUser = {
             firstName: this._firstName,
             lastName: this._lastName,
@@ -110,7 +167,7 @@ export class LayoutComponent implements OnDestroy, OnInit {
         this.isLoggedIn = true;
     }
 
-    hasMissingInformation() {
+    hasMissingInformation(): boolean {
         return this._travels.length === 0 || (this._transports.length + this._vehicles.length === 0);
     }
 }
