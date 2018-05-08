@@ -1,5 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+// Assets
 import { environment } from '../../../../../environments/environment';
 import { DailyCarTrips } from '../../../user/model/daily-car-trips';
 import { User } from '../../../user/model/user';
@@ -37,7 +40,7 @@ export class LayoutComponent implements OnDestroy, OnInit {
     public tmpStart: string;
     public tmpEnd: string;
 
-    constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public router: Router) {
         this.mobileQuery = media.matchMedia('(max-width: 600px)');
         this._mobileQueryListener = () => changeDetectorRef.detectChanges();
         this.mobileQuery.addListener(this._mobileQueryListener);
@@ -102,6 +105,7 @@ export class LayoutComponent implements OnDestroy, OnInit {
         };
 
         console.log('sign in with : ', tmpUser);
+        this.router.navigate(['/home']);
         this.isLoggedIn = true;
     }
 
