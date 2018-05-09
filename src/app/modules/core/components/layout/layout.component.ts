@@ -24,7 +24,7 @@ const mockUserFromCAS = {
     templateUrl: 'layout.component.html',
     styleUrls: ['layout.component.scss'],
 })
-export class LayoutComponent implements OnDestroy, OnInit, AfterContentInit {
+export class LayoutComponent implements OnDestroy, OnInit {
 
     @ViewChild('notificationNav') notificationNav: MatSidenav;
 
@@ -35,7 +35,7 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterContentInit {
     private _mobileQueryListener: () => void;
     public env = environment;
     // init to true if you don't want to test first authentication form
-    public isLoggedIn = true;
+    public isLoggedIn = false;
 
     public _firstName: string;
     public _lastName: string;
@@ -98,7 +98,8 @@ export class LayoutComponent implements OnDestroy, OnInit, AfterContentInit {
         this.router.navigate(['notifications']);
     }
 
-    ngAfterContentInit(): void {
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngAfterViewInit(): void {
         if (this.isLoggedIn) {
             this.notificationNav.onClose.subscribe(data => this.setNotificationRead());
         }
