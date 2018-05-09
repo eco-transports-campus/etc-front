@@ -71,35 +71,165 @@
     }
 
     .notification-link {
-      margin: 8px 0px;
-      text-align: center;
+        margin: 8px 0px;
+        text-align: center;
     }
 
     .notification-unread {
-      background: #fff !important;
+        background: #fff !important;
     }
 
     .notification {
-      padding: 8px;
-      background: #f3f3f3;
+        padding: 8px;
+        background: #f3f3f3;
 
 
-      .notification-date {
-        font-size: 0.7em;
-        color: grey;
-        display: block;
-      }
+        .notification-date {
+            font-size: 0.7em;
+            color: grey;
+            display: block;
+        }
 
-      .notification-title {
-        font-size: 1em;
-        display: block;
-        font-weight: bold;
-        margin-bottom: 8px
-      }
+        .notification-title {
+            font-size: 1em;
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px
+        }
 
-      .notification-content {
-        font-size: 0.9em;
-        margin-bottom: 8px
-      }
+        .notification-content {
+            font-size: 0.9em;
+            margin-bottom: 8px
+        }
+    }
+}
+
+// First authentication scss
+.layout-auth {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .mat-toolbar {
+        z-index: 10;
+        background: #3f51b5;
+        color: white;
+        box-shadow: 
+            0px 2px 4px -1px rgba(0, 0, 0, 0.2), 
+            0px 4px 5px 0px rgba(0, 0, 0, 0.14), 
+            0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+        .app-name {
+            margin-left: 20px
+        }
+    }
+
+    .authentication {
+        padding: 30px 20px;
+
+        .topic {
+            margin: 20px 0;
+            max-width: 900px;
+    
+            .title {
+                font-weight: bold;
+                font-size: 1.2em;
+                width: 100%;
+                // border-bottom: solid 1px #01579B;
+                padding-bottom: 5px;
+                margin-bottom: 10px;
+
+                .mat-icon {
+                    display: inline-flex;
+                    vertical-align: middle;
+                    padding-bottom: 3px;
+                }
+            }
+    
+            .content {
+                // text-align: justify;
+
+                .input,
+                .select {
+                    width: 300px;
+                }
+                
+                &.travels-form {
+                    button {
+                        margin-right: 10px;
+                        display: block;
+
+                        .mat-icon {
+                            padding-bottom: 2px;
+                        }
+                    }
+
+                    .travels {
+                        .travel {
+                            display: flex;
+                            margin: 5px 0;
+
+                            .t-render {
+                                flex: 1;
+
+                                .mat-divider {
+                                    max-width: 560px;
+                                }
+                                div {
+                                    padding: 2px 0;
+                                }
+                            }
+
+                            .mat-icon {
+                                width: 40px;
+                                display: inline-flex;
+                                vertical-align: middle;
+                                padding-bottom: 3px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            } 
+        }
+
+        .error {
+            color: red;
+        }
+    }
+
+    // If mobile size
+    &.isMobile {
+        .mat-toolbar {
+            position: fixed;
+        }
+
+        .authentication {
+            padding: 10px 20px;
+
+            .topic {
+                &:first-child {
+                    margin-top: 5px;
+                }
+
+                .content {
+                    &.travels-form {
+                        .travels {
+                            .travel {
+                                .t-render {
+                                    .mat-divider {
+                                        max-width: 260px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

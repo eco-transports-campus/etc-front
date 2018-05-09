@@ -1,16 +1,30 @@
 import { Notification } from './../../../notification/models/notifications';
 import { NotificationService } from './../../../notification/services/notification.service';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnDestroy, ViewChild, AfterContentInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, ViewChild, AfterContentInit, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+// Assets
 import { environment } from '../../../../../environments/environment';
+import { DailyCarTrips } from '../../../user/model/daily-car-trips';
+import { User } from '../../../user/model/user';
+
+// Material
 import { MatSidenav } from '@angular/material/sidenav';
 
+const mockUserFromCAS = {
+    firstName: 'Clément',
+    lastName: 'Garin',
+    universityMail: 'clement.garin@u-psud.fr'
+};
+
+// TODO Layout -> Authentication
 @Component({
     selector: 'app-layout',
     templateUrl: 'layout.component.html',
     styleUrls: ['layout.component.scss'],
 })
-export class LayoutComponent implements OnDestroy, AfterContentInit {
+export class LayoutComponent implements OnDestroy, OnInit {
 
     @ViewChild('notificationNav') notificationNav: MatSidenav;
 
@@ -20,8 +34,29 @@ export class LayoutComponent implements OnDestroy, AfterContentInit {
 
     private _mobileQueryListener: () => void;
     public env = environment;
+    // init to true if you don't want to test first authentication form
+    public isLoggedIn = false;
 
-    constructor(private notif: NotificationService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    public _firstName: string;
+    public _lastName: string;
+    public _universityMail: string;
+    public _mail: string;
+    public _phoneNumber: string;
+    public _transports: string[];
+    public _vehicles: string[];
+    public _travels: Travel[];
+    public _selectedNotifs: any[];
+    public travelId = 0;
+
+    public tmpStart: string;
+    public tmpEnd: string;
+
+    constructor(
+        private notif: NotificationService,
+        changeDetectorRef: ChangeDetectorRef,
+        media: MediaMatcher,
+        public router: Router) {
+
         this.mobileQuery = media.matchMedia('(max-width: 600px)');
         this._mobileQueryListener = () => changeDetectorRef.detectChanges();
         this.mobileQuery.addListener(this._mobileQueryListener);
@@ -30,39 +65,117 @@ export class LayoutComponent implements OnDestroy, AfterContentInit {
     }
 
     openNotification(): void {
-      this.notificationNav.toggle();
+        this.notificationNav.toggle();
     }
 
     setNotificationRead(): void {
-      this.notifications.forEach(item => item.unread = false);
-      this.unreadNotifications = 0;
+        this.notifications.forEach(item => item.unread = false);
+        this.unreadNotifications = 0;
     }
 
     retrievedNotification(): void {
-      // TODO: Use real user id
-      this.notif.getNotificationsForUser(1).subscribe(
-        data => {
-          this.notifications = data;
-          this.unreadNotifications = this.notifications.filter(notification => notification.unread).length;
-        }
-      );
+        // TODO: Use real user id
+        this.notif.getNotificationsForUser(1).subscribe(
+            data => {
+                this.notifications = data;
+                this.unreadNotifications = this.notifications.filter(notification => notification.unread).length;
+            }
+        );
     }
 
     listenNotification(): void {
-      // TODO: Use real user id
-      this.notif.listenNewNotificationForUser(1).subscribe(
-        data => {
-          this.notifications.push(data);
-          this.unreadNotifications++;
-        }
-      );
+        // TODO: Use real user id
+        this.notif.listenNewNotificationForUser(1).subscribe(
+            data => {
+                this.notifications.push(data);
+                this.unreadNotifications++;
+            }
+        );
     }
 
-    ngAfterContentInit(): void {
-      this.notificationNav.onClose.subscribe(data => this.setNotificationRead());
+    showAllNotifications(): void {
+        this.notificationNav.toggle();
+        this.router.navigate(['notifications']);
+    }
+
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngAfterViewInit(): void {
+        if (this.isLoggedIn) {
+            this.notificationNav.onClose.subscribe(data => this.setNotificationRead());
+        }
+    }
+
+    ngOnInit(): void {
+        this._firstName = mockUserFromCAS.firstName;
+        this._lastName = mockUserFromCAS.lastName;
+        this._universityMail = mockUserFromCAS.universityMail;
+        this._mail = '';
+        this._phoneNumber = '';
+        this._travels = [];
+        this._vehicles = [];
+        this._transports = [];
+        this._selectedNotifs = ['Demandes quotidiennes sur vos trajets', 'Trajets trouvés', 'Informations'];
+        this.tmpStart = '';
+        this.tmpEnd = '';
     }
 
     ngOnDestroy(): void {
         this.mobileQuery.removeListener(this._mobileQueryListener);
     }
+
+    addTravel(): void {
+        const travel = <Travel>{};
+
+        travel.start = this.tmpStart;
+        travel.end = this.tmpEnd;
+        travel.id = this.travelId;
+
+        this.travelId++;
+        this._travels.push(travel);
+
+        this.tmpStart = '';
+        this.tmpEnd = '';
+    }
+
+    removeTravel(id: number): void {
+        this._travels = this._travels.filter(travel => travel.id !== id);
+    }
+
+    toggleNotif(notif: string): void {
+        if (this._selectedNotifs.includes(notif)) {
+            this._selectedNotifs = this._selectedNotifs.filter(n => n !== notif);
+        } else {
+            this._selectedNotifs.push(notif);
+        }
+    }
+
+    signIn(): void {
+        const tmpUser = {
+            firstName: this._firstName,
+            lastName: this._lastName,
+            contact: {
+                universityMail: this._universityMail,
+                secondaryMail: this._mail,
+                phone: this._phoneNumber
+            },
+            dailyCarTrips: this._travels,
+            notificationPreferences: this._selectedNotifs,
+            transports: [...this._transports, ...this._vehicles]
+        };
+
+        console.log('sign in with : ', tmpUser);
+        this.router.navigate(['/home']);
+        this.isLoggedIn = true;
+    }
+
+    hasMissingInformation(): boolean {
+        return this._travels.length === 0 || (this._transports.length + this._vehicles.length === 0);
+    }
 }
+
+interface Travel {
+    id: number;
+    start: string;
+    end: string;
+}
+

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { LayoutComponent } from './components/layout/layout.component';
@@ -16,7 +17,11 @@ import {
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatButtonModule,
+    MatSelectModule,
+    MatCheckboxModule
 } from '@angular/material';
 
 export const COMPONENTS = [
@@ -32,13 +37,19 @@ const MATERIAL_MODULES = [
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatButtonModule,
+    MatSelectModule,
+    MatCheckboxModule
 ];
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
         ...MATERIAL_MODULES
     ],
     declarations: COMPONENTS,
