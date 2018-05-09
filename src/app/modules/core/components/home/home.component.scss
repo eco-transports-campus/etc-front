@@ -1,17 +1,46 @@
-html, body {
-  height: 100%;
-  margin: 0;
-}
-.wrapper {
-  min-height: 100%;
+.home {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
-  /* Equal to height of footer */
-  /* But also accounting for potential margin-bottom of last child */
-  margin-bottom: -50px;
-  text-align: center;
-  font-size: 25px;
+  background-color: white;
+
 }
-.footer,
-.push {
-  height: 50px;
-}
+
+.mat-toolbar {
+    z-index: 10;
+    background: #3f51b5;
+    color: white;
+    box-shadow:
+        0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+    width: 1000px;
+    }
+        h1{
+            margin-left: 20px;
+            text-align: center;
+            font-size: 20px;
+
+        }
+
+        td{
+          margin-left: 20px;
+          font-size: 16px;
+        }
+
+            .mat-card-container {
+                flex: 1;
+
+                .mat-card {
+                    width: 240px;
+                    border-right: 1px solid rgba(0, 0, 0, 0.12);
+
+
+                }
+            }

@@ -48,6 +48,7 @@ const appRoutes: Routes = [
         ),
         BrowserModule,
         BrowserAnimationsModule,
+
         RouterModule,
         HttpClientModule,
         // Custom modules
