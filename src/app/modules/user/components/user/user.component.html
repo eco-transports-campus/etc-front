@@ -1,3 +1,46 @@
 <div class="user">
-    TODO : User Page
+	<h1>Bonjour {{ user.firstName }} {{ user.lastName }} </h1>
+
+  <mat-card>
+	  <mat-card-title>Contact :</mat-card-title>
+	  <mat-card-content>
+		  <ul>
+				<li *ngFor="let cont of fetchKeys(user.contact)"> {{cont}} : {{ user.contact[cont] }} </li>
+			</ul>
+		</mat-card-content>
+	</mat-card>
+
+	<mat-card>
+		<mat-card-title>Daily trips :</mat-card-title>
+		<mat-card-content>
+			<ul>
+			  <li *ngFor="let item of user.dailyCarTrips.trips">
+			    {{ item.start }} to {{ item.end }}
+			  </li>
+			</ul>
+		</mat-card-content>
+	</mat-card>
+	
+	<mat-card>
+		<mat-card-title>Notification Preference : </mat-card-title>
+		<mat-card-content>
+			<ul>
+				<li *ngFor="let notif of user.notificationPreference">
+			  	{{ notif }} 
+		  	</li>
+			</ul>
+		</mat-card-content>
+	</mat-card>
+	
+	<mat-card>
+		<mat-card-title>Means of Transportation : </mat-card-title> 
+		<mat-card-content>
+			<ul>
+				<li *ngFor="let types of user.transport">
+			  	{{ types }} 
+		  	</li>
+			</ul>
+		</mat-card-content>
+	</mat-card>
+
 </div>
