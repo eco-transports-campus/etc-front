@@ -1,43 +1,88 @@
-<div class="home">
-  <br>
-
-  <table style="width:100%">
-  <tr>
-    <th style="width:60%">  <h1> Bienvenue sur l’application de gestion des déplacements pour les étudiants Polytech Paris sud </h1></th>
-    <th style="width:40%"><img src="./assets/images/car_etc.png" height="150" width="180"/></th>
-      <!-- <img src="./assets/images/car_logo_final.png"  height="100" width="100" /> -->
-  </tr>
-
-  </table>
-      <br>
-      <table style="width:80%">
-      <tr>
-      <td>
-        <p style="  margin-left: 20px">Cette application vous permet de gérer vos déplacements quotidiens de la façon la plus écologique
-<br>  Vous aller pouvoir : </p>
-<br>
-
-<ul>
-  <li>Indiquer en temps réel les conditions de circulation sur un trajet donnée afin d’anticiper des difficultés sur les routes
-</li>
-  <li>Donner l’état du Traffic RATP et bus en temps réel</li>
-  <li>Envoyer des annonces de possibilités de co-voiturage sur certains trajets</li>
-  <li>Conserver les statistiques concernant les trajets effectués</li>
-  <li>Indiquer la possibilité de partager le véhicule si 3 personnes font un trajet commun tous les jours</li>
-</ul>
-
-
-</td>
-</tr>
-</table>
-
-<mat-card class="example-card">
+<div fxLayout="row" id="container-base" >
+<mat-card  fxFlex="40" style="margin: 14px;">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-title>Proposer ...</mat-card-title>
   </mat-card-header>
+  <br>
+  <mat-card-content>
+     <label > A partir de ?</label>
+
+     <input matInput >
+     <i class="material-icons" md13>
+     place
+     </i>
+
+ </mat-card-content>
+ <mat-card-content>
+    <label > Ou ?   </label>
+
+
+    <input matInput >
+    <i class="material-icons" md13>
+  place
+  </i>
+</mat-card-content>
+<mat-card-content>
+   <label> Quand ?</label>
+
+   <input
+           type="date" />
+   <i class="material-icons" md13>
+   calendar_today
+   </i>
+</mat-card-content>
+
+<mat-card-content>
+  <label> </label>
+<button  mat-raised-button color="warn">GO!</button>
+
+</mat-card-content>
+
+
 </mat-card>
 
+<mat-card fxFlex="40" style="margin: 14px;">
+  <mat-card-header>
+    <mat-card-title>Demander ...</mat-card-title>
+  </mat-card-header>
+  <br>
+  <mat-card-content>
+     <label > A partir de ?</label>
+
+     <input matInput >
+     <i class="material-icons" md13>
+     place
+     </i>
+
+ </mat-card-content>
+ <mat-card-content>
+    <label > Vers ?   </label>
+
+
+    <input matInput >
+    <i class="material-icons" md13>
+  place
+  </i>
+</mat-card-content>
+<mat-card-content>
+   <label> Quand ?</label>
+
+   <input
+           type="date"  />
+   <i class="material-icons" md13>
+   calendar_today
+   </i>
+
+
+</mat-card-content>
+
+<mat-card-content>
+  <label> </label>
+<button  mat-raised-button color="warn">GO!</button>
+
+</mat-card-content>
+
+
+</mat-card>
 
 </div>

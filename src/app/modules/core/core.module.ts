@@ -16,8 +16,15 @@ import {
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+
+
+
 } from '@angular/material';
+
+import {FlexLayoutModule}from '@angular/flex-layout';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 export const COMPONENTS = [
     LayoutComponent,
@@ -32,7 +39,10 @@ const MATERIAL_MODULES = [
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    FlexLayoutModule,
+    MatInputModule,
+    MatDatepickerModule
 ];
 
 @NgModule({
