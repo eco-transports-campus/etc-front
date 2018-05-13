@@ -8,14 +8,15 @@ import { UserComponent } from './components/user/user.component';
 
 // Material
 import {
-
+	MatCardModule
 } from '@angular/material';
 
 export const COMPONENTS = [
-    UserComponent
+    UserComponent,
 ];
 
 const MATERIAL_MODULES = [
+	MatCardModule
 ];
 
 @NgModule({
