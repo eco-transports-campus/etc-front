@@ -1,88 +1,86 @@
-<div fxLayout="row" id="container-base" >
-<mat-card  fxFlex="40" style="margin: 14px;">
-  <mat-card-header>
-    <mat-card-title>Proposer ...</mat-card-title>
-  </mat-card-header>
-  <br>
-  <mat-card-content>
-     <label > A partir de ?</label>
+<div fxLayout="row" id="container-base"  >
+  <mat-card  fxFlex="40" style="margin: 14px;">
+    <mat-card-header>
+      <mat-card-title>Proposer ...</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+      <label > A partir de ?</label>
 
-     <input matInput >
-     <i class="material-icons" md13>
-     place
-     </i>
+      <input matInput >
+      <i class="material-icons" md13>
+        place
+      </i>
 
- </mat-card-content>
- <mat-card-content>
-    <label > Ou ?   </label>
-
-
-    <input matInput >
-    <i class="material-icons" md13>
-  place
-  </i>
-</mat-card-content>
-<mat-card-content>
-   <label> Quand ?</label>
-
-   <input
-           type="date" />
-   <i class="material-icons" md13>
-   calendar_today
-   </i>
-</mat-card-content>
-
-<mat-card-content>
-  <label> </label>
-<button  mat-raised-button color="warn">GO!</button>
-
-</mat-card-content>
+    </mat-card-content>
+    <mat-card-content>
+      <label > Ou ?   </label>
 
 
-</mat-card>
+      <input matInput >
+      <i class="material-icons" md13>
+        place
+      </i>
+    </mat-card-content>
+    <mat-card-content>
+      <label> Quand ?</label>
 
-<mat-card fxFlex="40" style="margin: 14px;">
-  <mat-card-header>
-    <mat-card-title>Demander ...</mat-card-title>
-  </mat-card-header>
-  <br>
-  <mat-card-content>
-     <label > A partir de ?</label>
+      <input
+      type="date" />
+      <i class="material-icons" md13>
+        calendar_today
+      </i>
+    </mat-card-content>
 
-     <input matInput >
-     <i class="material-icons" md13>
-     place
-     </i>
+    <mat-card-content>
+      <label> </label>
+      <button  mat-raised-button color="warn" (click)="searchroot()" >GO!</button>
 
- </mat-card-content>
- <mat-card-content>
-    <label > Vers ?   </label>
+    </mat-card-content>
+  </mat-card>
 
+  <mat-card fxFlex="40" style="margin: 14px;">
+    <mat-card-header>
+      <mat-card-title>Demander ...</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+      <label > A partir de ?</label>
 
-    <input matInput >
-    <i class="material-icons" md13>
-  place
-  </i>
-</mat-card-content>
-<mat-card-content>
-   <label> Quand ?</label>
+      <input matInput >
+      <i class="material-icons" md13>
+        place
+      </i>
 
-   <input
-           type="date"  />
-   <i class="material-icons" md13>
-   calendar_today
-   </i>
-
-
-</mat-card-content>
-
-<mat-card-content>
-  <label> </label>
-<button  mat-raised-button color="warn">GO!</button>
-
-</mat-card-content>
+    </mat-card-content>
+    <mat-card-content>
+      <label > Vers ?   </label>
 
 
-</mat-card>
+      <input matInput >
+      <i class="material-icons" md13>
+        place
+      </i>
+    </mat-card-content>
+    <mat-card-content>
+      <label> Quand ?</label>
+
+      <input
+      type="date"  />
+      <i class="material-icons" md13>
+        calendar_today
+      </i>
+
+
+    </mat-card-content>
+
+    <mat-card-content>
+      <label> </label>
+      <button  mat-raised-button color="warn"(click)="searchroot()" >GO!</button>
+
+    </mat-card-content>
+
+
+  </mat-card>
 
 </div>

@@ -9,7 +9,13 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  searchroot(){
+
+    console.log("Trouver un trajet !");
   }
 
+
+  ngOnInit() {
+  }
+  
 }
