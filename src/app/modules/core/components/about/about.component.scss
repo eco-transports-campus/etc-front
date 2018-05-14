@@ -6,21 +6,28 @@
   align-items: center;     /* center items horizontally, in this case */
   vertical-align: baseline;
   font-family: Helvetica,Arial,Lucida,sans-serif;
-  font-size: 100%;
-  font-style: normal;
 
-}
+  margin-left: 20px;
+  margin-right: 20px;
 
-#card1{
-  width: 700px;
-}
 
-#card2{
-
-  width: 330px;
 }
 
 p,li {
-  line-height: 25px;
+  line-height: 30px;
   padding-bottom: 10px;
+  font-size: 20px;
+
+}
+
+h3{
+  font-size: 24px;
+}
+
+h4{
+  font-size: 20px;
+}
+
+a,span{
+  font-size: 20px;
 }
