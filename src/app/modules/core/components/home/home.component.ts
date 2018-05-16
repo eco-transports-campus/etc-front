@@ -14,8 +14,11 @@ export class HomeComponent implements OnInit {
     console.log("Trouver un trajet !");
   }
 
+  getInfo(){
+    console.log("Afficher les détails du trajet !");
+  }
 
   ngOnInit() {
   }
-  
+
 }

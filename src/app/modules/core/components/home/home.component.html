@@ -1,12 +1,14 @@
 <br>
+
 <div fxLayout="row" id="container-base" layout-margin layout-wrap layout-align="center center" >
+
   <mat-card  fxFlex="40" style="margin: 14px;">
-    <mat-card-header>
-      <mat-card-title>Proposer ...</mat-card-title>
-    </mat-card-header>
+
+    <mat-toolbar> Proposer ...</mat-toolbar>
     <br>
+    <!-- <img src="./assets/images/eco-logo2.png"  class="responsive" /> -->
     <mat-card-content>
-      <label > A partir de ?</label>
+      <label > Lieu de départ</label>
 
       <input matInput >
       <i class="material-icons" md13>
@@ -15,7 +17,7 @@
 
     </mat-card-content>
     <mat-card-content>
-      <label > Ou ?   </label>
+      <label > Lieu d'arrivé</label>
 
 
       <input matInput >
@@ -24,62 +26,123 @@
       </i>
     </mat-card-content>
     <mat-card-content>
-      <label> Quand ?</label>
+      <label> Jour</label>
 
-      <input
+      <input matInput
       type="date" />
       <i class="material-icons" md13>
         calendar_today
       </i>
     </mat-card-content>
+    <mat-card-content>
+      <label> Heure </label>
+
+      <input matInput
+      type="time"  />
+      <i class="material-icons" md13>
+        access_time
+      </i>
+
+    </mat-card-content>
+
+    <br>
+    <button  mat-raised-button (click)="searchroot()" >C'est parti!</button>
+
+
+
+  </mat-card>
+
+  <mat-card fxFlex="40" style="margin: 14px;">
+    <mat-toolbar> Demander ...</mat-toolbar>
+    <br>
 
     <mat-card-content>
-      <label> </label>
-      <button  mat-raised-button color="warn" (click)="searchroot()" >GO!</button>
+      <label > Lieu de départ</label>
+
+      <input matInput >
+      <i class="material-icons" md13>
+        place
+      </i>
+
+    </mat-card-content>
+    <mat-card-content>
+      <label > Destination </label>
+
+
+      <input matInput >
+      <i class="material-icons" md13>
+        place
+      </i>
+    </mat-card-content>
+    <mat-card-content>
+      <label> Jour</label>
+
+      <input matInput type="date"  />
+      <i class="material-icons" md13>
+        calendar_today
+      </i>
+
+    </mat-card-content>
+
+    <mat-card-content>
+      <label> Heure</label>
+
+      <input matInput
+      type="time"  />
+      <i class="material-icons" md13>
+        access_time
+      </i>
+
+    </mat-card-content>
+    <mat-card-content>
+      <br>
+      <button  mat-raised-button (click)="searchroot()" >C'est parti!</button>
 
     </mat-card-content>
 
 
   </mat-card>
 
-  <mat-card fxFlex="40" style="margin: 14px;">
-    <mat-card-header>
-      <mat-card-title>Demander ...</mat-card-title>
-    </mat-card-header>
+</div>
+
+
+
+<br>
+<div fxLayout="row" id="container-base" layout-margin layout-wrap layout-align="center center" >
+  <mat-card  fxFlex="40" style="margin: 14px;">
+    <mat-toolbar> Propositions récentes:</mat-toolbar>
     <br>
-    <mat-card-content>
-      <label > A partir de ?</label>
+    <mat-card-content  fxLayout="row" >
 
-      <input matInput >
-      <i class="material-icons" md13>
-        place
-      </i>
+      <p fxFlex="100">Rue val d'europe,Paris le 12/05/2018 à 13:09        </p>
+
+      <button fxFlex="20" mat-raised-button  (click)=getInfo() > Voir! </button>
 
     </mat-card-content>
-    <mat-card-content>
-      <label > Vers ?   </label>
+    <mat-card-content fxLayout="row" >
 
-
-      <input matInput >
-      <i class="material-icons" md13>
-        place
-      </i>
-    </mat-card-content>
-    <mat-card-content>
-      <label> Quand ?</label>
-
-      <input
-      type="date"  />
-      <i class="material-icons" md13>
-        calendar_today
-      </i>
-
+      <p  fxFlex="100">Avenue Benoît Frachon,Antony le 12/05/2018 à 13:09</p>
+      <button fxFlex="20"  mat-raised-button (click)="getInfo()" > Voir! </button>
 
     </mat-card-content>
 
-    <mat-card-content>
-      <label> </label>
-      <button  mat-raised-button color="warn"(click)="searchroot()" >GO!</button>
+  </mat-card>
+
+  <mat-card fxFlex="40" style="margin: 14px;">
+
+    <mat-toolbar> Demandes récentes:</mat-toolbar>
+    <br>
+    <mat-card-content fxLayout="row">
+
+      <p  fxFlex="100">Allée Adrienne-Lecouvreur,Paris le 12/05/2018 à 13:09</p>
+      <button fxFlex="20" mat-raised-button  (click)=getInfo() > Voir! </button>
+
+
+    </mat-card-content>
+    <mat-card-content fxLayout="row">
+
+      <p fxFlex="100">Allée Christian Pineau,Viroflay le 12/05/2018 à 13:09 </p>
+      <button fxFlex="20"  mat-raised-button (click)=getInfo() > Voir! </button>
 
     </mat-card-content>
 
